@@ -15,6 +15,6 @@ class homePageController extends AbstractController
      * @Route("/", name="app_homepage")
      */
     public function homepage(Environment $twigEnvironment) {
-        return $this->render('homepage.html.twig');
+        return $this->render('product.html.twig');
     }
 }

@@ -15,7 +15,7 @@ class testController extends AbstractController
      */
     public function show($id){
 
-        return $this->render('home/homepage.html.twig', ['box' => $id]);
+        return $this->render('home/product.html.twig', ['box' => $id]);
 
     }
 }
