@@ -12,20 +12,15 @@
     --text-secondary: #b6b6b6 ;
     --bg-primary: #141418;
     --bg-secundary: #23232e;
+    --bg-light: #ffffff;
     --accent-color: #32cd32;
     --transition-speed: 200ms;
+
 }
 
 html {
     height: 100%;
     width: 100%;
-}
-
-body {
-    color: black;
-    background-color: white;
-    /*overflow: hidden;*/
-
 }
 
 body::-webkit-scrollbar {
@@ -37,15 +32,12 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-    background: #6649b8
+    background: var(--accent-color)
 }
 
 main {
     margin-left: 5rem;
     min-height: 100vh;
-
-
-
     display: flex;
     flex-direction: column;
 }
@@ -53,14 +45,14 @@ main {
 header {
     position: relative;
     padding: 1rem;
-    background-color: white;
+    background-color: var(--bg-light);
     display: flex;
     justify-content: center;
 }
 
 section {
     padding: 1rem 2rem;
-
+    background-color: var(--bg-light);
 }
 
 footer {
@@ -76,7 +68,6 @@ footer {
 
 .footer-col h2 {
     color: var(--text-primary);
-    margin-bottom: 1rem;
     font-weight: bold;
     position: relative;
 }
@@ -88,21 +79,15 @@ footer {
     height: 2px;
     background-color: var(--accent-color);
     top: 30px;
-
-
 }
 
 .footer-col ul li a {
     color: var(--text-secondary);
-
-
-
 }
 
 .socials-list {
     display: flex;
 }
-
 
 .navbar{
     z-index: 99;

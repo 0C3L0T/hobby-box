@@ -19,7 +19,7 @@ class homePageController extends AbstractController
 
         $products = $repository->findAll();
 
-        return $this->render('homepage.html.twig', [
+        return $this->render('product/homepage.html.twig', [
             'products' => $products,
         ]);
     }

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{%  block main %}
+
+
+{# handle errors#}
+ {% for message in app.flashes('success') %}
+  <div class="alert alert-success">
+   {{ message }}
+  </div>
+ {% endfor %}
+ {% for message in app.flashes('fail') %}
+  <div class="alert alert-fail">
+   {{ message }}
+  </div>
+ {% endfor %}
+
+
+ <h1>nieuw product toevoegen</h1>
+
+ {{ form(form) }}
+
+
+{% endblock %}

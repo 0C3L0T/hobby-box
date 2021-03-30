@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/styles/product.css" type="text/css">
+{% endblock%}
+
+{% block main %}
+
+    <h1>{{ product.name }}</h1>
+    <img src="{{ product.image }}" alt="picture of {{ product.name }}">
+    <p>{{ product.description }}</p>
+    <p>&euro;{{ product.price }}</p>
+
+    <p>rated {{ product.rating }}/5</p>
+{% endblock %}

@@ -1,7 +1,81 @@
-main {
+section {
     display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-auto-rows: 300px;
 }
 
-article {
+.product-card {
+    transition: var(--transition-speed);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+
+    height: 100%;
+    width: 100%;
+
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+
+    box-shadow: 10px 10px;
+}
+
+.product-card:hover{
+
+    filter: grayscale(10%) opacity(40%);
+
 
 }
+
+.card-link  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+}
+
+.card-link h2 {
+    margin-bottom: auto;
+    margin-top: 1rem;
+    color: var(--text-primary);
+}
+
+.card-link h3 {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.card-link div {
+    display: none;
+    position: absolute;
+
+    margin-top: 8rem;
+
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+
+
+
+    font-weight: 900;
+    border: none;
+
+    border-radius: 4px;
+    padding: 13px;
+
+
+
+}
+
+.card-link:hover div {
+    display: block;
+    z-index: 10;
+}
+
+
+.card-link img{
+    width: 100%;
+}
+
+
+

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/styles/homepage.css" type="text/css">
+{% endblock %}
+
+
+{% block main %}
+    {% for product in products%}
+        <article class="product-card">
+            <a class="card-link"
+               href="{{ path('app_product_show', {slug: product.slug}) }}">
+                <img src="{{ asset('images/' ~ product.image) }}" alt="picture of {{ product.name }}">
+                <h2>{{ product.name }}</h2>
+{#                <div>More Info</div>#}
+
+                <h3>RATED {{ product.rating }}/5</h3>
+            </a>
+        </article>
+    {% endfor %}
+{% endblock %}
