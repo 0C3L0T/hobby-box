@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/styles/product.css" type="text/css">
+{% endblock%}
+
+{% block main %}
+
+    <div class="left-side">
+        <h1 class="title-big">{{ product.name }}</h1>
+        <h2 class="product-score">score {{ product.rating }}/5</h2>
+        <img src="{{ asset('images/' ~ product.image) }}" alt="picture of {{ product.name }}">
+    </div>
+
+    <div class="right-side">
+        <p class="product-price">{{ product.price }}</p>
+        <p class="product-description">{{ product.description }}</p>
+
+        {{ form_start(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

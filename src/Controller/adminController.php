@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,8 +19,11 @@ class adminController extends AbstractController
 
     /**
      * @Route("/admin", name="app_product_new")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, SluggerInterface $slugger): Response{
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to acces admin page without having ROLE_ADMIN role');
 
         $product = new Product();
 

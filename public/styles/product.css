@@ -1,8 +1,54 @@
 section {
     display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10vw;
+    padding: 3rem;
 }
 
 
-h1 {
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-side {
+    margin-top: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.title-big {
     font-size: 3rem;
+}
+
+.product-score {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+}
+
+.product-description {
+    margin-bottom: 3rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+.product-price {
+    font-size: 3rem;
+    color: lightcoral;
+    font-weight: 900;
+}
+
+/* Small Screens */
+@media only screen and (max-width: 600px) {
+    section {
+        padding: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
 }

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WinkelWagen{% endblock %}
+
+{% block main %}
+    <h1>WinkelWagen</h1>
+    {% if cart.items.count > 0 %}
+        {{ form_widget(form.save, {'attr': {'class': 'button button-accent'}}) }}
+        {{ form_widget(form.clear, {'attr': {'class': 'button button-light'}}) }}
+
+
+        <ul class="cart-items-list">
+            <h5>Items</h5>
+            {% for item in form.items %}
+                <li class="cart-item">
+                    <img src="{{ asset('images/' ~ item.vars.data.product.image) }}" alt="picture of {{ item.vars.data.product.name }}">
+                    <h5>{{ item.vars.data.product.name }}</h5>
+                    <div class="form-inline">
+                        <div class="form-group mb-0 mr-2">
+                            {{ form_widget(item.quantity, {
+                                'attr': {
+                                    'class': 'cart-item-form' ~ (item.quantity.vars.valid ? '' : 'is-invalid')
+                                }
+                            }) }}
+                            <div class="invalid-feedback">
+                                {{ form_errors(item.quantity) }}
+                            </div>
+                        </div>
+                        {{ form_widget(item.remove, {'attr': {'class': 'button button-dark'}}) }}
+                    </div>
+
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="alert alert-info">
+            Je winkelwagentje is leeg! Ga naar de <a href="{{ path('app_homepage') }}">product pagina</a>
+        </div>
+    {% endif %}
+
+    <section class="cart-summary">
+        <h2>Overzicht</h2>
+        <b>Totaal</b>
+        <span><b>&euro;{{ cart.total }}</b></span>
+        <button class="button cart-summary-button">Checkout</button>
+    </section>
+{% endblock %}

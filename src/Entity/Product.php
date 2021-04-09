@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -46,6 +47,8 @@ class Product
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\LessThanOrEqual(5)
+     * @Assert\PositiveOrZero
      */
     private $rating;
 

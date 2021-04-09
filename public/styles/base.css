@@ -107,7 +107,7 @@ footer {
     width: 100%;
 }
 
-.nav-item:last-child{
+.nav-item.admin{
     margin-top: auto;
 }
 

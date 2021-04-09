@@ -39,10 +39,10 @@ final class ProductFactory extends ModelFactory
         return [
             'name' => self::faker()->realText(20),
             'description' => self::faker()->paragraph(
-                self::faker()->numberBetween(3,5), true
+                self::faker()->numberBetween(8,10), true
             ),
             'price' => rand(5, 50),
-            'image' => '/images/box.png',
+            'image' => 'box.png',
             'rating' => rand(0, 5),
         ];
     }
