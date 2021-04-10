@@ -36,6 +36,9 @@ class ClearCartListener implements EventSubscriberInterface
         if (!$form->get('clear')->isClicked()) {
             return;
         }
+
+        // Clear the cart
+        $cart->removeItems();
     }
 
 }

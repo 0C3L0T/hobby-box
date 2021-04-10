@@ -5,7 +5,6 @@
 {% endblock%}
 
 {% block main %}
-
     <div class="left-side">
         <h1 class="title-big">{{ product.name }}</h1>
         <h2 class="product-score">score {{ product.rating }}/5</h2>
@@ -16,7 +15,12 @@
         <p class="product-price">{{ product.price }}</p>
         <p class="product-description">{{ product.description }}</p>
 
-        {{ form_start(form) }}
-        {{ form_end(form) }}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+        {% else %}
+            <p class="product-login-to-view-message"><a href="{{ path('app_login') }}">log in </a>om producten aan je winkelwagen toe te voegen.</p>
+
+        {% endif %}
     </div>
 {% endblock %}

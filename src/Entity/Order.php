@@ -47,6 +47,12 @@ class Order
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="order_id", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user_id;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -152,6 +158,18 @@ class Order
     public function setUpdatedAt(DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(User $user_id): self
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }

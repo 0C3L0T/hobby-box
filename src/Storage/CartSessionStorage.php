@@ -4,8 +4,10 @@
 namespace App\Storage;
 
 use App\Entity\Order;
+use App\Entity\User;
 use App\Repository\OrderRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\Security;
 
 
 class CartSessionStorage
@@ -16,14 +18,14 @@ class CartSessionStorage
      *
      * @var SessionInterface
      */
-    private $session;
+    private SessionInterface $session;
 
     /**
      * The cart repository
      *
      * @var OrderRepository
      */
-    private $cartRepository;
+    private OrderRepository $cartRepository;
 
     /**
      * @var string
@@ -31,15 +33,22 @@ class CartSessionStorage
     const CART_KEY_NAME = 'cart_id';
 
     /**
+     * @var Security
+     */
+    private Security $security;
+
+    /**
      * CartSessionStorage constructor.
      *
      * @param SessionInterface $session
      * @param OrderRepository $cartRepository
+     * @param Security $security
      */
-    public function __construct(SessionInterface $session, OrderRepository $cartRepository)
+    public function __construct(SessionInterface $session, OrderRepository $cartRepository, Security $security)
     {
         $this->session = $session;
         $this->cartRepository = $cartRepository;
+        $this->security = $security;
     }
 
     /**
@@ -49,9 +58,12 @@ class CartSessionStorage
      */
     public function getCart(): ?Order
     {
+
         return $this->cartRepository->findOneBy([
-            'id' => $this->getCartId(),
-            'status' => Order::STATUS_CART
+            
+            'status' => Order::STATUS_CART,
+            'user_id' => $this->security->getUser()
+
         ]);
     }
 
@@ -62,7 +74,10 @@ class CartSessionStorage
      */
     public function setCart(Order $cart): void
     {
-        $this->session->set(self::CART_KEY_NAME, $cart->getId());
+        $this->session->set(
+            self::CART_KEY_NAME,
+            $cart->getId())
+        ;
     }
 
     /**
@@ -74,5 +89,6 @@ class CartSessionStorage
     {
         return $this->session->get(self::CART_KEY_NAME);
     }
+
 
 }

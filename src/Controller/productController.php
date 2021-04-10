@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Product;
+use App\Entity\User;
 use App\Form\AddToCartType;
 use App\Manager\CartManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,7 @@ class productController extends AbstractController
             $item->setProduct($product);
 
             $cart = $cartManager->getCurrentCart();
+
             $cart
                 ->addItem($item)
                 ->setUpdatedAt(new \DateTime());

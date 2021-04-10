@@ -18,6 +18,9 @@ class CartController extends AbstractController
      */
     public function cart(CartManager $cartManager, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+
         $cart = $cartManager->getCurrentCart();
         $form = $this->createForm(CartType::class, $cart);
         $form->handleRequest($request);

@@ -8,6 +8,7 @@ use App\Entity\Order;
 use App\Factory\OrderFactory;
 use App\Storage\CartSessionStorage;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Security;
 
 class CartManager
 {
@@ -25,6 +26,11 @@ class CartManager
      * @var EntityManagerInterface
      */
     private $entityManager;
+    /**
+     * @var Security
+     */
+    private Security $security;
+
 
     /**
      * CartManager constructor.
@@ -32,15 +38,20 @@ class CartManager
      * @param CartSessionStorage $cartStorage
      * @param OrderFactory $orderFactory
      * @param EntityManagerInterface $entityManager
+     * @param Security $security
      */
     public function __construct(
         CartSessionStorage $cartStorage,
         OrderFactory $orderFactory,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Security $security
+
     ) {
         $this->cartSessionStorage = $cartStorage;
         $this->cartFactory = $orderFactory;
         $this->entityManager = $entityManager;
+        $this->security = $security;
+
     }
 
     /**
@@ -50,10 +61,14 @@ class CartManager
      */
     public function getCurrentCart(): Order
     {
+        $user = $this->security->getUser();
+
+
+        //this is broken, it keeps making new carts
         $cart = $this->cartSessionStorage->getCart();
 
         if (!$cart) {
-            $cart = $this->cartFactory->create();
+            $cart = $this->cartFactory->create($user);
         }
 
         return $cart;
@@ -66,10 +81,13 @@ class CartManager
      */
     public function save(Order $cart): void
     {
+
+        // Persist in session
+        $this->cartSessionStorage->setCart($cart);
+
         // Persist in database
         $this->entityManager->persist($cart);
         $this->entityManager->flush();
-        // Persist in session
-        $this->cartSessionStorage->setCart($cart);
+
     }
 }
