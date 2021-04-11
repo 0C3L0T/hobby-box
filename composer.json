@@ -26,6 +26,7 @@
         "symfony/mime": "5.2.*",
         "symfony/monolog-bundle": "^3.6",
         "symfony/proxy-manager-bridge": "5.2.*",
+        "symfony/requirements-checker": "^2.0",
         "symfony/security-bundle": "5.2.*",
         "symfony/stopwatch": "5.2.*",
         "symfony/twig-bundle": "5.2.*",
@@ -63,7 +64,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "requirements-checker": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -84,5 +86,7 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "zenstruck/foundry": "^1.8"
-    }
+    },
+    "description": "composer",
+    "name": "composer/composer"
 }
