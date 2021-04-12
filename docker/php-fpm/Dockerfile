@@ -18,4 +18,5 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
+
 WORKDIR /var/www/hobby-box.nl
