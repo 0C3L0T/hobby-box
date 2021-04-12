@@ -22,15 +22,16 @@ class UserFixture extends Fixture
         $user = new User();
         $manager->persist($user);
 
-        $user->setEmail('test@test.com');
+        $user->setEmail('gdejong@stmichaelcollege.nl');
 
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
-            'password'
+            'admin'
         ));
 
         $user->setRoles(['ROLE_ADMIN']);
 
         $manager->flush();
     }
+
 }

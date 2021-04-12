@@ -5,7 +5,8 @@ services:
     database:
         image: 'mariadb:latest'
         environment:
-            MYSQL_ROOT_PASSWORD: password
+#            MYSQL_ROOT_PASSWORD: password
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
             MYSQL_DATABASE: main
         ports:
             # To allow the host machine to access the ports below, modify the lines below.
@@ -20,6 +21,8 @@ services:
         volumes:
         -   .:/var/www/hobby-box.nl
         user: '1000'
+        links:
+            -   'database:main'
 
 
     nginx:
@@ -31,31 +34,31 @@ services:
         -   .:/var/www/hobby-box.nl
 
 
-    traefik:
-        image: 'traefik:v2.4'
-        container_name: 'traefik'
-        command:
-            #- "--log.level=DEBUG"
-            - "--api.insecure=true"
-            - "--providers.docker=true"
-            - "--providers.docker.exposedbydefault=false"
-            - "--entrypoints.web.address=:80"
-        ports:
-        - '80:80'
-        - '8080:8080'
-        volumes:
-        - '/var/run/docker.sock:/var/run/docker.sock:ro'
-
-    whoami:
-        image: "traefik/whoami"
-        container_name: "simple-service"
-        labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.whoami.rule=Host(`www.hobby-box.nl`)"
-            - "traefik.http.routers.whoami.entrypoints=web"
-            - 'traefik.http.routers.my-app.tls=true'
-            - 'traefik.http.routers.my-app.tls.certresolver=lets-encrypt'
-
+#    traefik:
+#        image: 'traefik:v2.4'
+#        container_name: 'traefik'
+#        command:
+#            #- "--log.level=DEBUG"
+#            - "--api.insecure=true"
+#            - "--providers.docker=true"
+#            - "--providers.docker.exposedbydefault=false"
+#            - "--entrypoints.web.address=:80"
+#        ports:
+#        - '80:80'
+#        - '8080:8080'
+#        volumes:
+#        - '/var/run/docker.sock:/var/run/docker.sock:ro'
+#
+#    whoami:
+#        image: "traefik/whoami"
+#        container_name: "simple-service"
+#        labels:
+#            - "traefik.enable=true"
+#            - "traefik.http.routers.whoami.rule=Host(`www.hobby-box.nl`)"
+#            - "traefik.http.routers.whoami.entrypoints=web"
+#            - 'traefik.http.routers.my-app.tls=true'
+#            - 'traefik.http.routers.my-app.tls.certresolver=lets-encrypt'
+#
 
 #    mailhog:
 #        image: mailhog/mailhog:latest

@@ -64,7 +64,6 @@ class CartManager
         $user = $this->security->getUser();
 
 
-        //this is broken, it keeps making new carts
         $cart = $this->cartSessionStorage->getCart();
 
         if (!$cart) {
