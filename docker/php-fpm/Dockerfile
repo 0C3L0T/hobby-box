@@ -10,9 +10,7 @@ ENV COMPOSER_HOME /tmp
 
 RUN curl -sS https://getcomposer.org/installer | php \
          && mv composer.phar /usr/local/bin/composer
-         #composer require?
 
-RUN
 
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"

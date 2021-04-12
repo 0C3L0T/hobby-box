@@ -5,8 +5,7 @@ services:
     database:
         image: 'mariadb:latest'
         environment:
-#            MYSQL_ROOT_PASSWORD: password
-            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+            MYSQL_ROOT_PASSWORD: password
             MYSQL_DATABASE: main
         ports:
             # To allow the host machine to access the ports below, modify the lines below.
@@ -19,19 +18,24 @@ services:
         build:
             context: docker/php-fpm
         volumes:
-        -   .:/var/www/hobby-box.nl
+            -   .:/var/www/hobby-box.nl
         user: '1000'
-        links:
-            -   'database:main'
 
 
     nginx:
         build:
             context: docker/nginx
         ports:
-        -   80:80
+            -   80:80
         volumes:
-        -   .:/var/www/hobby-box.nl
+            -   .:/var/www/hobby-box.nl
+
+    composer:
+        restart: 'no'
+        image: composer:latest
+        command: install
+        volumes:
+            -   .:/app
 
 
 #    traefik:
