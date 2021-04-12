@@ -2,8 +2,11 @@ FROM php:fpm-alpine
 
 RUN apk update \
     && apk upgrade \
-    && apk add --no-cache $PHP_DEPS git \
+    && apk add --no-cache $PHP_PACKAGES git \
     && rm -rf /tmp/* /var/cache/apk/* /var/www/html
+
+
+RUN docker-php-ext-install pdo_mysql
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp

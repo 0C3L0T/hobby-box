@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="main@localhost" uuid="d524f645-7924-4cf9-bd6b-d3adf9408388">
+    <data-source source="LOCAL" name="MySQL - main@localhost" read-only="true" uuid="c6ff3b9e-5304-4e62-a1de-a297d7c343e6">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
+      <remarks>dd</remarks>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:49155/main</jdbc-url>
+      <jdbc-url>jdbc:mariadb://localhost:49162/main</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
